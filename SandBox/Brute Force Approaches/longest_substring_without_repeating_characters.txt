@@ -1,0 +1,32 @@
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        """
+        s : string
+
+        output : longest substring that does not contain duplicate characters
+
+        example : s = abcabcbb, longest substring without duplicate characters is "abc"
+
+        left = p
+        right = w
+
+        """
+        left, right = 0, 1
+        longest = 1
+        length = 1
+        seen = []
+        if len(s) == 0:
+            return 0
+        while right < len(s):
+            if s[left] != s[right] and s[right] not in seen:
+                length += 1
+                seen.append(s[right])
+            else:
+                longest = max(length, longest)
+                length = 1
+                left = right
+            right += 1
+        if longest == 1 and seen != []:
+            longest += len(seen)
+        return longest
+        
