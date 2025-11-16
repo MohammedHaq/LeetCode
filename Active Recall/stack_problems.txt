@@ -1,0 +1,14 @@
+class Solution:
+    def isValid(self, s: str) -> bool:
+        parantheses = {")" : "(", "}" : "{", "]" : "["}
+        stack = []
+        for c in s:
+            if c in parantheses.values():
+                stack.append(c)
+            elif c in parantheses.keys():
+                if not stack or stack.pop() != parantheses[c]:
+                    return False
+        return len(stack) == 0
+
+
+        
